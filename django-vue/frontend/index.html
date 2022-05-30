@@ -4,18 +4,11 @@
     <meta charset="utf-8">
     <title>USD\RUB</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.2.14/spectre.min.css">
-
-   <!-- Bootstrap CSS 4.3.1 -->
+       <!-- Bootstrap CSS 4.3.1 -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-  <!-- Axios -->
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-  <!-- VueJS -->
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
-<body>
-  <div class="container mt-4" id="app">
+  </head>
+  <body>
+    <div class="container mt-4" id="app">
 
     <table class="table table-bordered">
       <thead>
@@ -28,8 +21,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="jsonid in jsonapi.data">
-
+        <tr v-for="jsonid, index in jsonapi">
+          <td>{{ index + 1}}</td>
           <td>{{ jsonid.current_date }}</td>
           <td>{{ jsonid.date_from }}</td>
           <td>{{ jsonid.date_to }}</td>
@@ -38,24 +31,7 @@
       </tbody>
     </table>
   </div>
-  <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        jsonapi: []
-      },
-      mounted: function() {
-        axios.get('http://127.0.0.1:8000/api/v2/usdrub/?format=json')
-            .then(response => {
-              this.jsonapi = response.data;
-              console.log(response);
-            })
-            .catch(error => {
-              console.log(error);
-            });
-      }
-    })
-  </script>
+    <!-- built files will be auto injected -->
 
   <script>
 
