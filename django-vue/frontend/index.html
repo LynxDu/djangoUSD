@@ -4,9 +4,70 @@
     <meta charset="utf-8">
     <title>USD\RUB</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.2.14/spectre.min.css">
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
+
+   <!-- Bootstrap CSS 4.3.1 -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- Axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <!-- VueJS -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div class="container mt-4" id="app">
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">current_date</th>
+          <th scope="col">date_from</th>
+          <th scope="col">date_to</th>
+          <th scope="col">json_from_api</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="jsonid in jsonapi.data">
+
+          <td>{{ jsonid.current_date }}</td>
+          <td>{{ jsonid.date_from }}</td>
+          <td>{{ jsonid.date_to }}</td>
+          <td>{{ jsonid.json_from_api }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        jsonapi: []
+      },
+      mounted: function() {
+        axios.get('http://127.0.0.1:8000/api/v2/usdrub/?format=json')
+            .then(response => {
+              this.jsonapi = response.data;
+              console.log(response);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+      }
+    })
+  </script>
+
+  <script>
+
+  </script>
   </body>
 </html>
+<!--{
+        "data": [
+                  {
+                    "id": 1,
+                    "current_date": 123.23,
+                    "date_from": "2022-05-28T22:42:00.229631Z",
+                    "date_to": "2022-05-28T22:42:00.229745Z",
+                    "json_from_api": "557575" },
+                    ...{ "id": 2, "current_date": 123.23, "date_from": "2022-05-29T21:48:49.072554Z", "date_to": "2022-05-29T21:48:49.072672Z", "json_from_api": "557575" } ], "status": 200, "statusText": "OK", "headers": { "content-length": "277", "content-type": "application/json" }, "config": { "transitional": { "silentJSONParsing": true, "forcedJSONParsing": true, "clarifyTimeoutError": false }, "transformRequest": [ null ], "transformResponse": [ null ], "timeout": 0, "xsrfCookieName": "XSRF-TOKEN", "xsrfHeaderName": "X-XSRF-TOKEN", "maxContentLength": -1, "maxBodyLength": -1, "env": { "FormData": null }, "headers": { "Accept": "application/json, text/plain, */*" }, "method": "get", "url": "http://127.0.0.1:8000/api/v2/usdrub/?format=json" }, "request": {} }-->
