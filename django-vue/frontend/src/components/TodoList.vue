@@ -3,32 +3,32 @@
     <h1>Todos</h1>
     <ul>
       <li v-for="todo of todos" :key="todo.id">
-        {{ todo.id }}
+        {{ todo.id}}
       </li>
     </ul>
   </di>
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "TodoList",
-  data() {
+  name: 'TodoList',
+  data () {
     return {
       todos: []
-    };
+    }
   },
-  async created() {
+  async created () {
     try {
-      const res = await axios.get(`http://127.0.0.1:8000/api/v2/usdrub/?format=json`);
+      const res = await axios.get(`http://127.0.0.1:8000/api/v2/usdrub/?format=json`)
 
-      this.todos = res.data;
+      this.todos = res.data
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
   }
-};
+}
 </script>
 
 <style scoped>

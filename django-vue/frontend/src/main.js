@@ -1,8 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
-import store from './store'
 Vue.config.productionTip = false
 const axios = require('axios').default
 
@@ -23,5 +21,33 @@ new Vue({
       .catch(error => {
         console.log(error)
       })
+  },
+  methods: {
+    day: function (event) {
+      // `this` внутри методов указывает на экземпляр Vue
+      // alert('Привет, ' + this.name + '!')
+      // `event` — нативное событие DOM
+      if (event) {
+        alert(1)
+      }
+    },
+    month: function (event) {
+      // `this` внутри методов указывает на экземпляр Vue
+      // alert('Привет, ' + this.name + '!')
+      // `event` — нативное событие DOM
+      if (event) {
+        alert(2)
+      }
+    },
+    year: function (event) {
+      // `this` внутри методов указывает на экземпляр Vue
+      // alert('Привет, ' + this.name + '!')
+      // `event` — нативное событие DOM
+      if (event) {
+        alert(3)
+      }
+    }
   }
 })
+
+
